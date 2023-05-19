@@ -1,9 +1,8 @@
-from dataclasses import dataclass
-from heap import MaxHeap
+from dataclasses import dataclass, field
 
 @dataclass
 class Beehive:
-    """A beehive has a position in 3d space, and some stats."""
+    """A beehive has a position in 3d space. That's it!"""
 
     x: int
     y: int
@@ -11,18 +10,7 @@ class Beehive:
 
     capacity: int
     nutrient_factor: int
-    volume: int = 0
+    volume: int = field(init=False)
 
-class BeehiveSelector:
-
-    def __init__(self, max_beehives: int):
-        raise NotImplementedError()
-
-    def set_all_beehives(self, hive_list: list[Beehive]):
-        raise NotImplementedError()
-    
-    def add_beehive(self, hive: Beehive):
-        raise NotImplementedError()
-    
-    def harvest_best_beehive(self):
-        raise NotImplementedError()
+    def __post_init__(self):
+        self.volume = self.capacity

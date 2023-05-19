@@ -1,7 +1,5 @@
 from __future__ import annotations
 from typing import Generic, TypeVar
-from math import ceil
-from bst import BinarySearchTree
 
 T = TypeVar("T")
 I = TypeVar("I")
@@ -9,23 +7,21 @@ I = TypeVar("I")
 class Percentiles(Generic[T]):
 
     def __init__(self) -> None:
-        raise NotImplementedError()
-    
-    def add_point(self, item: T):
-        raise NotImplementedError()
-    
-    def remove_point(self, item: T):
+        pass
+
+    def ratio(self, x: float, y: float):
         raise NotImplementedError()
 
-    def ratio(self, x, y):
+    def add_point(item: T) -> None:
         raise NotImplementedError()
 
+    def remove_point(item: T) -> None:
+        raise NotImplementedError()
+        
 if __name__ == "__main__":
-    points = list(range(50))
+    points = list(enumerate(list(range(50))))
     import random
     random.shuffle(points)
-    p = Percentiles()
-    for point in points:
-        p.add_point(point)
+    p = Percentiles(points)
     # Numbers from 8 to 16.
     print(p.ratio(15, 66))
