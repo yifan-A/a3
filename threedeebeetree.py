@@ -13,6 +13,7 @@ class BeeNode:
     subtree_size: int = 1
     subtree:List[BeeNode|None] = field(default_factory=list)
 
+    # time complexity O(1)
     def get_index_for_key(self, point: Point)->int:
         if len(self.subtree) == 0:
             for i in range(8):
@@ -25,12 +26,12 @@ class BeeNode:
         if point[2] > self.key[2]:
             idx |= 4
         return idx
-
+    # time complexity O(1)
     def get_child_for_key(self, point: Point) -> BeeNode:
         # raise NotImplementedError()
         idx = self.get_index_for_key(point)
         return self.subtree[idx]
-
+    # time complexity O(1)
     def set_node_for_key(self,point:Point,node:BeeNode)->None:
         idx = self.get_index_for_key(point)
         self.subtree[idx] = node
@@ -75,6 +76,8 @@ class ThreeDeeBeeTree(Generic[I]):
         node = self.get_tree_node_by_key(key)
         return node.item
 
+    # time complexity O(D)
+    # D is the depth of tree
     def get_tree_node_by_key(self, key: Point) -> BeeNode:
         # raise NotImplementedError()
         current = self.root
@@ -92,6 +95,8 @@ class ThreeDeeBeeTree(Generic[I]):
     def __setitem__(self, key: Point, item: I) -> None:
         self.root = self.insert_aux(self.root, key, item)
 
+    # time complexity O(D)
+    # D is the depth of tree
     def insert_aux(self, current: BeeNode, key: Point, item: I) -> BeeNode:
         """
             Attempts to insert an item into the tree, it uses the Key to insert it
