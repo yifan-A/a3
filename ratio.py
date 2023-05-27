@@ -12,12 +12,27 @@ class Percentiles(Generic[T]):
         self.bst = BinarySearchTree()
     
     def add_point(self, item: T):
+        """
+        Time complexity of add a point is same to insert a node into bst
+        which is O(D) or O(logN)
+        """
         self.bst[item] = 1
     
     def remove_point(self, item: T):
+        """
+        Time complexity of remove a point is same to insert a node into bst
+        which is O(D) or O(logN)
+        """
         del self.bst[item]
 
     def ratio(self, x, y):
+        """
+        Time complexity analysis:
+        Time to find the kth smallest node is O(logN),
+        the algorithm is same as find the xth smallest node to (1-y) smallest node
+        any node between them will append to the result when finding the bounding nodes
+        that is the total time complexity is O(logN + O) 
+        """
         size = len(self.bst)
         result = []
         x = x * 0.01
